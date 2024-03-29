@@ -44,10 +44,17 @@ def fetch_data():
     return df_sorted
 
 def main():
-    st.header('Stocks')
-    df1 = st.empty()
-    st.header('Sub Penny')
-    df3 = st.empty()  
+    #st.header('Stocks')
+    #df1 = st.empty()
+    #st.header('Sub Penny')
+    #df3 = st.empty()
+    columns = st.columns(2)
+    with columns[0]:
+        st.header('Stocks')
+        df1 = st.empty()
+    with columns[1]:
+        st.header('Sub Penny')
+        df3 = st.empty()
     
 
     # Infinite loop to continuously update data
