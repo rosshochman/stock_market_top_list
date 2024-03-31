@@ -41,8 +41,10 @@ def fetch_data():
     df_sorted["% Change"] = df_sorted["% Change"].round(2)
     df_sorted["% Change"] = df_sorted["% Change"].apply(lambda x: '{:+}%'.format(x) if x >= 0 else '{:-}%'.format(x))
     trip_otc_df = df_sorted[df_sorted['Price'] < 0.001]
+    url3 = "http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
+    df27 = pd.read_csv(url3, delimiter="|")
 
-    return df_sorted, trip_otc_df
+    return df_sorted, trip_otc_df, df27
 
 def main():
     #st.header('Stocks')
@@ -68,11 +70,12 @@ def main():
     while True:
         try:
             # Fetch data from Polygon.io API
-            new_df1 , new_df2= fetch_data()
+            new_df1 , new_df2, new_df3= fetch_data()
 
 
             df1.dataframe(new_df1, hide_index=True)
             df2.dataframe(new_df2, hide_index=True)
+            df3.dataframe(new_df3, hide_index=True)
 
             # Sleep for 1 second before making the next API call
             time.sleep(.1)
