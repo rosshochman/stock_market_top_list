@@ -84,6 +84,7 @@ def main():
         st.header('Penny +')
         df4 = st.empty()
     naz_count_loop = 0
+    nasdaq_symbol_list = []
 
     # Infinite loop to continuously update data
     while True:
