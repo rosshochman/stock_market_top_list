@@ -41,7 +41,7 @@ def fetch_data():
         master_list.append(new_list)
     columns = ["Ticker","Price","VWAP","% Change","Volume","$ Volume","Venue","Time"]
     df = pd.DataFrame(master_list, columns=columns)
-    df=df[df["$ Volume"] > 5000]
+    #df=df[df["$ Volume"] > 5000]
     df_sorted = df.sort_values(by="% Change", ascending=False)
     df_sorted['Price'] = df_sorted['Price'].round(2)
     df_sorted['VWAP'] = df_sorted['VWAP'].round(2)
@@ -50,6 +50,7 @@ def fetch_data():
     naz_df = df_sorted[df_sorted['Venue'] == 'listed']
     naz_df = naz_df[naz_df['Price'] < 25]
     otc_df = df_sorted[df_sorted['Venue'] == 'otc']
+    otc_df = otc_df[otc_df["$ Volume"] > 5000]
     trip_otc_df = otc_df[otc_df['Price'] < 0.001]
     sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)]
     penny_plus_df = otc_df[otc_df['Price'] > 0.01]
