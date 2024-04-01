@@ -13,9 +13,9 @@ def fetch_data():
         url_naz = "http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
         df_naz = pd.read_csv(url_naz, delimiter="|")
         nasdaq_symbol_list = df_naz['Symbol'].dropna().tolist()
-        naz_count_loop = naz_count_loop + 1
-        if naz_count_loop > 10000:
-            naz_count_loop = 0
+    naz_count_loop = naz_count_loop + 1
+    if naz_count_loop > 10000:
+        naz_count_loop = 0
     master_list = []
     url = "https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/tickers?include_otc=true&apiKey="+polygon_key
     #add something to get lists of otc vs listed
@@ -27,8 +27,8 @@ def fetch_data():
         cont_list = ["Q","D"]
         if len(ticker) == 5 and ticker[-1] not in cont_list:
             continue
-        #if "." in ticker or ticker != ticker.upper():
-        #    continue
+        if "." in ticker or ticker != ticker.upper():
+            continue
         percentage_str = i["todaysChangePerc"]
         percentage_float = float(percentage_str)
         change_str = i["todaysChange"]
