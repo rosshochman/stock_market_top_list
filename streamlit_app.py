@@ -25,10 +25,10 @@ def fetch_data():
     for i in tickers_list:
         ticker = i["ticker"]
         cont_list = ["Q","D"]
-        if len(ticker) == 5 and ticker[-1] not in cont_list:
-            continue
-        if "." in ticker or ticker != ticker.upper():
-            continue
+        #if len(ticker) == 5 and ticker[-1] not in cont_list:
+        #    continue
+        #if "." in ticker or ticker != ticker.upper():
+        #    continue
         percentage_str = i["todaysChangePerc"]
         percentage_float = float(percentage_str)
         change_str = i["todaysChange"]
