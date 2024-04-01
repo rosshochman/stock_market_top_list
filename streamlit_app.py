@@ -47,11 +47,11 @@ def fetch_data():
             loc = "listed"
         else:
             loc = "otc"
-        #new_list = [ticker,dayPriceFloat,dayVWfloat,percentage_float,dayVint,dollarValue,loc,epoch_time]
-        new_list = [ticker,dayPriceFloat,dayVWfloat,percentage_float,dayVint,dollarValue,loc]
+        new_list = [ticker,dayPriceFloat,dayVWfloat,percentage_float,dayVint,dollarValue,loc,epoch_time]
+        #new_list = [ticker,dayPriceFloat,dayVWfloat,percentage_float,dayVint,dollarValue,loc]
         master_list.append(new_list)
-    #columns = ["Ticker","Price","VWAP","% Change","Volume","$ Volume","Venue","Time"]
-    columns = ["Ticker","Price","VWAP","% Change","Volume","$ Volume","Venue"]
+    columns = ["Ticker","Price","VWAP","% Change","Volume","$ Volume","Venue","Time"]
+    #columns = ["Ticker","Price","VWAP","% Change","Volume","$ Volume","Venue"]
     df = pd.DataFrame(master_list, columns=columns)
     #df=df[df["$ Volume"] > 5000]
     df_sorted = df.sort_values(by="% Change", ascending=False)
