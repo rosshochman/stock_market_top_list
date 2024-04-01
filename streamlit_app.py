@@ -43,12 +43,12 @@ def fetch_data():
     df = pd.DataFrame(master_list, columns=columns)
     #df=df[df["$ Volume"] > 5000]
     df_sorted = df.sort_values(by="% Change", ascending=False)
-    df_sorted['Price'] = df_sorted['Price'].round(2)
-    df_sorted['VWAP'] = df_sorted['VWAP'].round(2)
     df_sorted["% Change"] = df_sorted["% Change"].round(2)
     df_sorted["% Change"] = df_sorted["% Change"].apply(lambda x: '{:+}%'.format(x) if x >= 0 else '{:-}%'.format(x))
     naz_df = df_sorted[df_sorted['Venue'] == 'listed']
     naz_df = naz_df[naz_df['Price'] < 25]
+    naz_df['Price'] = naz_df['Price'].round(2)
+    naz_df['VWAP'] = naz_df['VWAP'].round(2)
     otc_df = df_sorted[df_sorted['Venue'] == 'otc']
     otc_df = otc_df[otc_df["$ Volume"] > 5000]
     trip_otc_df = otc_df[otc_df['Price'] < 0.001]
