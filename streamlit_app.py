@@ -46,14 +46,14 @@ def fetch_data():
     df_sorted["% Change"] = df_sorted["% Change"].round(2)
     df_sorted["% Change"] = df_sorted["% Change"].apply(lambda x: '{:+}%'.format(x) if x >= 0 else '{:-}%'.format(x))
     naz_df = df_sorted[df_sorted['Venue'] == 'listed']
-    naz_df = naz_df[naz_df['Price'] < 25]
+    naz_df = naz_df[naz_df['Price'] < 25].head(100)
     #naz_df['Price'] = naz_df['Price'].round(2)
     #naz_df['VWAP'] = naz_df['VWAP'].round(2)
     otc_df = df_sorted[df_sorted['Venue'] == 'otc']
     otc_df = otc_df[otc_df["$ Volume"] > 5000]
-    trip_otc_df = otc_df[otc_df['Price'] < 0.001]
-    sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)]
-    penny_plus_df = otc_df[otc_df['Price'] > 0.01]
+    trip_otc_df = otc_df[otc_df['Price'] < 0.001].head(100)
+    sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)].head(100)
+    penny_plus_df = otc_df[otc_df['Price'] > 0.01].head(100)
 
     return naz_df, trip_otc_df, sub_otc_df, penny_plus_df
 
