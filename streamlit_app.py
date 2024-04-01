@@ -9,7 +9,7 @@ polygon_key = st.secrets["polygon_key"]
 naz_count_loop = 0
 
 def fetch_data():
-    if naz_count_loop == 0:
+    if naz_count_loop < 1:
         url_naz = "http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
         df_naz = pd.read_csv(url_naz, delimiter="|")
         nasdaq_symbol_list = df_naz['Symbol'].dropna().tolist()
