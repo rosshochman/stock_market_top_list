@@ -6,11 +6,16 @@ st.set_page_config(layout="wide")
 st.title("Penny Stock Data Science")
 polygon_key = st.secrets["polygon_key"]
 
+naz_count_loop = 0
 
 def fetch_data():
-    url_naz = "http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
-    df_naz = pd.read_csv(url_naz, delimiter="|")
-    nasdaq_symbol_list = df_naz['Symbol'].dropna().tolist()
+    if naz_count_loop == 0:
+        url_naz = "http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
+        df_naz = pd.read_csv(url_naz, delimiter="|")
+        nasdaq_symbol_list = df_naz['Symbol'].dropna().tolist()
+        naz_count_loop = naz_count_loop + 1
+        if naz_count_loop > 25000:
+            naz_count_loop = 0
     master_list = []
     url = "https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/tickers?include_otc=true&apiKey="+polygon_key
     #add something to get lists of otc vs listed
