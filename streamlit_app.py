@@ -67,7 +67,7 @@ def fetch_data():
 def main():
     columns = st.columns(4)
     with columns[0]:
-        st.header('Stocks')
+        st.header('Listed')
         df1 = st.empty()
     with columns[1]:
         st.header('Triple Zero')
