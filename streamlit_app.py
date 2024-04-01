@@ -6,7 +6,7 @@ st.set_page_config(layout="wide")
 st.title("Penny Stock Data Science")
 polygon_key = st.secrets["polygon_key"]
 
-naz_count_loop = 0
+
 
 def fetch_data():
     if naz_count_loop < 1:
@@ -83,6 +83,7 @@ def main():
     with columns[3]:
         st.header('Penny +')
         df4 = st.empty()
+    naz_count_loop = 0
 
     # Infinite loop to continuously update data
     while True:
