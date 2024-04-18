@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import time
 st.set_page_config(layout="wide")
-st.title("Penny Stock Data Science")
+#st.title("Penny Stock Data Science")
 polygon_key = st.secrets["polygon_key"]
 
 
