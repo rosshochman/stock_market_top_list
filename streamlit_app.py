@@ -13,7 +13,7 @@ polygon_key = st.secrets["polygon_key"]
 def bold_style(val):
     return 'font-weight: bold'
 
-# Define a function to apply green style to selected columns
+# Define a function to apply green style
 def green_style(val):
     return 'color: green'
 
@@ -58,6 +58,14 @@ def fetch_data():
     columns = ["Ticker","Price","VWAP","% Change","Volume","$ Volume","Venue","Time"]
     #columns = ["Ticker","Price","VWAP","% Change","Volume","$ Volume","Venue"]
     df = pd.DataFrame(master_list, columns=columns)
+    # Apply styling
+    df = (df.style
+                .set_table_styles([{
+                    'selector': 'thead th',  
+                    'props': [('font-weight', 'bold')]
+                }])
+                .applymap(lambda x: bold_style(x) if x.name == 'Ticker' else '', subset=pd.IndexSlice[:, 'Ticker'])
+                .applymap(lambda x: green_style(x) if x.name in ['Price', 'VWAP', '% Change'] else '', subset=pd.IndexSlice[:, ['Price', 'VWAP', '% Change']]))
     #df=df[df["$ Volume"] > 5000]
     df_sorted = df.sort_values(by="% Change", ascending=False)
     df_sorted["% Change"] = df_sorted["% Change"].round(2)
