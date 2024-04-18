@@ -73,16 +73,16 @@ def fetch_data():
     penny_plus_df = otc_df[otc_df['Price'] > 0.01].head(50)
 
     # Apply the styles to column 'Ticker' and all headers
-    naz_df = naz_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
-    trip_otc_df = trip_otc_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
-    sub_otc_df = sub_otc_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
-    penny_plus_df = penny_plus_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+    #naz_df = naz_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+    #trip_otc_df = trip_otc_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+    #sub_otc_df = sub_otc_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+    #penny_plus_df = penny_plus_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
 
     # Apply green style to selected columns
-    naz_df = naz_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
-    trip_otc_df = trip_otc_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
-    sub_otc_df = sub_otc_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
-    penny_plus_df = penny_plus_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
+    #naz_df = naz_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
+    #trip_otc_df = trip_otc_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
+    #sub_otc_df = sub_otc_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
+    #penny_plus_df = penny_plus_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
 
     return naz_df, trip_otc_df, sub_otc_df, penny_plus_df
 
@@ -107,10 +107,10 @@ def main():
         try:
             # Fetch data from Polygon.io API
             new_df1, new_df2, new_df3, new_df4 = fetch_data()
-            df1.dataframe(new_df1, hide_index=True)
-            df2.dataframe(new_df2, hide_index=True)
-            df3.dataframe(new_df3, hide_index=True)
-            df4.dataframe(new_df4, hide_index=True)
+            df1.dataframe(new_df1.style.highlight_max(axis=0), hide_index=True)
+            df2.dataframe(new_df2.style.highlight_max(axis=0), hide_index=True)
+            df3.dataframe(new_df3.style.highlight_max(axis=0), hide_index=True)
+            df4.dataframe(new_df4.style.highlight_max(axis=0), hide_index=True)
             # Sleep for 1 second before making the next API call
             time.sleep(.1)
 
