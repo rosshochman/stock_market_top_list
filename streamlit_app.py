@@ -67,10 +67,10 @@ def fetch_data():
     #naz_df['Price'] = naz_df['Price'].round(2)
     #naz_df['VWAP'] = naz_df['VWAP'].round(2)
     otc_df = df_sorted[df_sorted['Venue'] == 'otc']
-    otc_df = otc_df[otc_df["$ Volume"] > 5000].style
-    trip_otc_df = otc_df[otc_df['Price'] < 0.001].head(50).style
-    sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)].head(50).style
-    penny_plus_df = otc_df[otc_df['Price'] > 0.01].head(50).style
+    otc_df = otc_df[otc_df["$ Volume"] > 5000].style.copy()
+    trip_otc_df = otc_df[otc_df['Price'] < 0.001].head(50).style.copy()
+    sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)].head(50).style.copy()
+    penny_plus_df = otc_df[otc_df['Price'] > 0.01].head(50).style.copy()
 
     # Apply the styles to column 'Ticker' and all headers
     #naz_df = naz_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
