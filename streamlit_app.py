@@ -9,7 +9,13 @@ st.set_page_config(layout="wide")
 
 polygon_key = st.secrets["polygon_key"]
 
+# Define a function to apply bold style
+def bold_style(val):
+    return 'font-weight: bold'
 
+# Define a function to apply green style to selected columns
+def green_style(val):
+    return 'color: green'
 
 def fetch_data():
     url_naz = "http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
@@ -65,6 +71,18 @@ def fetch_data():
     trip_otc_df = otc_df[otc_df['Price'] < 0.001].head(50)
     sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)].head(50)
     penny_plus_df = otc_df[otc_df['Price'] > 0.01].head(50)
+
+    # Apply the styles to column 'Ticker' and all headers
+    naz_df = naz_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+    trip_otc_df = trip_otc_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+    sub_otc_df = sub_otc_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+    penny_plus_df = penny_plus_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
+
+    # Apply green style to selected columns
+    naz_df = naz_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
+    trip_otc_df = trip_otc_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
+    sub_otc_df = sub_otc_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
+    penny_plus_df = penny_plus_df.applymap(green_style, subset=['Price', 'VWAP', '% Change'])
 
     return naz_df, trip_otc_df, sub_otc_df, penny_plus_df
 
