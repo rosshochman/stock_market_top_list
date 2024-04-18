@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import time
+import math
 st.set_page_config(layout="wide")
 #st.title("Penny Stock Data Science")
 #test
