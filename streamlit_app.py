@@ -67,10 +67,10 @@ def fetch_data():
     #naz_df['Price'] = naz_df['Price'].round(2)
     #naz_df['VWAP'] = naz_df['VWAP'].round(2)
     otc_df = df_sorted[df_sorted['Venue'] == 'otc']
-    otc_df = otc_df[otc_df["$ Volume"] > 5000].style.copy()
-    trip_otc_df = otc_df[otc_df['Price'] < 0.001].head(50).style.copy()
-    sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)].head(50).style.copy()
-    penny_plus_df = otc_df[otc_df['Price'] > 0.01].head(50).style.copy()
+    otc_df = otc_df[otc_df["$ Volume"] > 5000]
+    trip_otc_df = otc_df[otc_df['Price'] < 0.001].head(50)
+    sub_otc_df = otc_df[(otc_df['Price'] >= 0.001) & (otc_df['Price'] <= 0.01)].head(50)
+    penny_plus_df = otc_df[otc_df['Price'] > 0.01].head(50)
 
     # Apply the styles to column 'Ticker' and all headers
     #naz_df = naz_df.style.applymap(bold_style, subset=pd.IndexSlice[:, 'Ticker']).apply(bold_style, axis=1)
@@ -107,10 +107,10 @@ def main():
         try:
             # Fetch data from Polygon.io API
             new_df1, new_df2, new_df3, new_df4 = fetch_data()
-            df1.dataframe(new_df1.style.highlight_max(axis=0), hide_index=True)
-            df2.dataframe(new_df2.style.highlight_max(axis=0), hide_index=True)
-            df3.dataframe(new_df3.style.highlight_max(axis=0), hide_index=True)
-            df4.dataframe(new_df4.style.highlight_max(axis=0), hide_index=True)
+            df1.dataframe(new_df1, hide_index=True)
+            df2.dataframe(new_df2, hide_index=True)
+            df3.dataframe(new_df3, hide_index=True)
+            df4.dataframe(new_df4, hide_index=True)
             # Sleep for 1 second before making the next API call
             time.sleep(.1)
 
