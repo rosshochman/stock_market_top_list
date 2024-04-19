@@ -94,16 +94,16 @@ def fetch_data():
 def main():
     columns = st.columns(4)
     with columns[0]:
-        st.header('Listed')
+        st.text('Listed')
         df1 = st.empty()
     with columns[1]:
-        st.header('Triple Zero')
+        st.text('Triple Zero')
         df2 = st.empty()
     with columns[2]:
-        st.header('Sub Penny')
+        st.text('Sub Penny')
         df3 = st.empty()
     with columns[3]:
-        st.header('Penny +')
+        st.text('Penny +')
         df4 = st.empty()
 
 
