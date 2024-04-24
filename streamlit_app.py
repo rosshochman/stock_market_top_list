@@ -63,7 +63,7 @@ def fetch_data():
     df_sorted["% Change"] = df_sorted["% Change"].round(2)
     df_sorted["% Change"] = df_sorted["% Change"].apply(lambda x: '{:+}%'.format(x) if x >= 0 else '{:-}%'.format(x))
     naz_df = df_sorted[df_sorted['Venue'] == 'listed']
-    naz_df = naz_df[naz_df['Price'] < 100].head(50)
+    naz_df = naz_df[naz_df['Price'] < 100].head(75)
     naz_df = naz_df.drop(columns=['Venue'])
     #naz_df['Price'] = naz_df['Price'].round(2)
     #naz_df['VWAP'] = naz_df['VWAP'].round(2)
