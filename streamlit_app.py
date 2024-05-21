@@ -92,17 +92,21 @@ def fetch_data():
     return naz_df, trip_otc_df, sub_otc_df, penny_plus_df
 
 def main():
-    columns = st.columns(4)
-    with columns[0]:
+    # First row with two columns
+    columns_row1 = st.columns(2)
+    with columns_row1[0]:
         st.markdown('**Listed**')
         df1 = st.empty()
-    with columns[1]:
+    with columns_row1[1]:
         st.markdown('**Triple Zero**')
         df2 = st.empty()
-    with columns[2]:
+    
+    # Second row with two columns
+    columns_row2 = st.columns(2)
+    with columns_row2[0]:
         st.markdown('**Sub Penny**')
         df3 = st.empty()
-    with columns[3]:
+    with columns_row2[1]:
         st.markdown('**Penny +**')
         df4 = st.empty()
 
