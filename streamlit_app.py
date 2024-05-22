@@ -121,7 +121,7 @@ def main():
             df3.dataframe(new_df3, hide_index=True)
             df4.dataframe(new_df4, hide_index=True)
             # Sleep for 1 second before making the next API call
-            time.sleep(.1)
+            time.sleep(1)
 
         except Exception as e:
             continue
