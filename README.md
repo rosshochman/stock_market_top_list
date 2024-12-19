@@ -1,4 +1,5 @@
 Stock Market Top Lists
+
 This GitHub repository provides a Streamlit Web App for generating top stock market lists focused on small-cap and categorized OTC stocks. It allows users to input their Polygon.io API key and explore curated stock lists in an interactive and user-friendly interface.
 
 Features
