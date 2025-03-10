@@ -116,10 +116,10 @@ def main():
         try:
             # Fetch data from Polygon.io API
             new_df1, new_df2, new_df3, new_df4 = fetch_data()
-            df1.dataframe(new_df1, hide_index=True)
-            df2.dataframe(new_df2, hide_index=True)
-            df3.dataframe(new_df3, hide_index=True)
-            df4.dataframe(new_df4, hide_index=True)
+            df1.dataframe(new_df1, hide_index=True, column_config={"Volume":st.column_config.NumberColumn(format="localized"),"$ Volume":st.column_config.NumberColumn(format="localized")})
+            df2.dataframe(new_df2, hide_index=True, column_config={"Volume":st.column_config.NumberColumn(format="localized"),"$ Volume":st.column_config.NumberColumn(format="localized")})
+            df3.dataframe(new_df3, hide_index=True, column_config={"Volume":st.column_config.NumberColumn(format="localized"),"$ Volume":st.column_config.NumberColumn(format="localized")})
+            df4.dataframe(new_df4, hide_index=True, column_config={"Volume":st.column_config.NumberColumn(format="localized"),"$ Volume":st.column_config.NumberColumn(format="localized")})
             # Sleep for 1 second before making the next API call
             time.sleep(1)
 
