@@ -30,7 +30,7 @@ def fetch_data():
     for i in tickers_list:
         ticker = i["ticker"]
         cont_list = ["Q","D"]
-        if len(ticker) == 5 and ticker[-1] not in cont_list:
+        if len(ticker) == 5 and ticker[-1] not in cont_list and ticker != "DTREF":
             continue
         if "." in ticker or ticker != ticker.upper():
             continue
