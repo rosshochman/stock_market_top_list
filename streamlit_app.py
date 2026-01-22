@@ -2,6 +2,8 @@ import time
 import requests
 import pandas as pd
 import streamlit as st
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 st.set_page_config(layout="wide")
 
@@ -146,7 +148,10 @@ def refresh_tables():
         sub_slot.dataframe(df3, hide_index=True, column_config=column_cfg)
         penny_slot.dataframe(df4, hide_index=True, column_config=column_cfg)
 
-        status_slot.caption("Last updated: " + time.strftime("%Y-%m-%d %H:%M:%S"))
+        ny = ZoneInfo("America/New_York")
+        status_slot.caption(
+        "Last updated (New York): " + datetime.now(ny).strftime("%Y-%m-%d %I:%M:%S %p %Z")
+        )
     except Exception as e:
         # Visible error instead of silently looping forever
         status_slot.error(f"Refresh failed: {e!r}")
