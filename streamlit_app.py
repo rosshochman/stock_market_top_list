@@ -15,7 +15,7 @@ def get_session() -> requests.Session:
     return s
 
 # --- Cache Nasdaq traded symbols (does NOT need to refresh every second) ---
-@st.cache_data(ttl=24 * 60 * 60)  # 24 hours
+@st.cache_data(ttl=2 * 60 * 60)  # 24 hours
 def load_nasdaq_symbol_set() -> set[str]:
     url = "https://www.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
     df = pd.read_csv(url, sep="|", dtype=str)
