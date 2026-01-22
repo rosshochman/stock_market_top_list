@@ -1,5 +1,5 @@
-altair
+#altair
 #had to change altair to <5 due to verson issue - free streamlit uses old version or something - didn't have correct path with altair 6
-#altair<5
+altair<5
 pandas
 streamlit
