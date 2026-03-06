@@ -47,8 +47,9 @@ def build_tables(tickers: list[dict], nasdaq_symbols: set[str]):
                 continue
 
             # Your existing filters:
-            if len(ticker) == 5 and (ticker[-1] not in cont_list) and ticker != "DTREF":
-                continue
+            #if len(ticker) == 5 and (ticker[-1] not in cont_list) and ticker != "DTREF":
+            #    continue
+            #changed the filter and commented out so we can get Q D F tickers
             if "." in ticker or ticker != ticker.upper():
                 continue
 
