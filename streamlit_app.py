@@ -37,7 +37,6 @@ def fetch_polygon_tickers(api_key: str) -> list[dict]:
     return payload.get("tickers", [])
 
 def build_tables(tickers: list[dict], nasdaq_symbols: set[str]):
-    cont_list = {"Q", "D"}
     rows = []
 
     for item in tickers:
@@ -92,6 +91,12 @@ def build_tables(tickers: list[dict], nasdaq_symbols: set[str]):
     listed_df = (
         df[df["Venue"] == "listed"]
         .copy()
+        .loc[
+            lambda x: ~(
+                (x["Ticker"].str.len() == 5)
+                & (x["Ticker"].str.endswith(("Z", "W")))
+            )
+        ]
         .query("Price < 100")
         .head(75)
         .drop(columns=["Venue"])
