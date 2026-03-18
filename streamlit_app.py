@@ -158,8 +158,8 @@ def refresh_tables():
         status_slot.caption(
         "Last updated (New York): " + datetime.now(ny).strftime("%Y-%m-%d %I:%M:%S %p %Z")
         )
-    except Exception as e:
-        # Visible error instead of silently looping forever
-        status_slot.error(f"Refresh failed: {e!r}")
+    except Exception:
+        # Keep API/provider error details off-screen so secrets cannot leak to users.
+        status_slot.warning("Refresh failed. Retrying automatically.")
 
 refresh_tables()
